@@ -1,32 +1,40 @@
+/*AIM: To find the required element in Binary Search*/
 #include <stdio.h>
-int main() {
-    int n, key, i, low, high, mid, found = 0;
-    printf("Enter number of elements: ");
+int main()
+{
+    int i, n, low, high, mid, a[10], key;
+    //user to enter the number of elements in the array
+    printf("Enter the number of elements:\n");
     scanf("%d", &n);
-    int arr[n];
-    printf("Enter %d elements in sorted order:\n", n);
-    for (i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
+    // user to enter the elements in sorted order
+    printf("Enter the elements in sorted order:\n");
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
     }
-    printf("Enter element to search: ");
+    printf("Enter the element to be searched:\n");
     scanf("%d", &key);
-    low = 0;
-    high = n - 1;
-    // Binary search logic
-    while (low <= high) {
+    low = 0; //lower bound of the search range
+    high = n - 1;// upper bound of the search range
+    while (low <= high)
+    {
         mid = (low + high) / 2;
-        if (arr[mid] == key) {
-            printf("Element %d found at position %d.\n", key, mid + 1);
-            found = 1;
-            break;
-        } else if (arr[mid] < key) {
-            low = mid + 1;
-        } else {
+        if (key == a[mid])
+        {
+            printf("Successful search: element found at position %d\n", mid + 1);
+            return 0;
+        }
+        else if (key < a[mid])
+        {
             high = mid - 1;
         }
+        else
+        {
+        low = mid + 1;//the key is larger, adjust the low bound to search the right half?
+        }
     }
-    if (!found) {
-        printf("Element %d not found in the array.\n", key);
-    }
+    printf("Element not found\n");//loop ends without finding the element, print a failure message
     return 0;
 }
+
+
